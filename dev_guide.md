@@ -65,90 +65,6 @@ Then still in ``SolutionManager``, add the new connector to the constructor.
     }
 ```
 
-#### Download source API SDKs (optional)
-
-!> This step is optional and will vary according to the type of API you would like to connect to Myddleware. For this part, you must refer to the source API documentation.
-
-In your terminal, you might need to download an SDK for the new API. 
-For instance, [the WooCommerce REST API documentation](https://woocommerce.github.io/woocommerce-rest-api-docs/#introduction)
-tells us that we need to add the **automattic/woocommerce** dependency to our Myddleware project in order to be able to login to the REST API. To do so, we ran :
-
-```bash
-       composer require automattic/woocommerce
-```
-
-Then, we implemented the Client described in their documentation inside our login(), create(), update() & read() methods. 
-Here is a sample of the code using the third-party client:
-
-````php
-<?php
-
-namespace App\Solutions;
-
-use Automattic\WooCommerce\Client;
-
-...
-
-class woocommercecore extends solution
-{
-    protected $apiUrlSuffix = '/wp-json/wc/v3/';
-    protected $url;
-    protected $consumerKey;
-    protected $consumerSecret;
-    protected $woocommerce;
-    
-    ...
-    
-    public function login($paramConnexion)
-    {
-        parent::login($paramConnexion);
-        $this->woocommerce = new Client(
-            $this->paramConnexion['url'],
-            $this->paramConnexion['consumerkey'],
-            $this->paramConnexion['consumersecret'],
-            [
-                'wp_api' => true,
-                'version' => 'wc/v3',
-            ]
-            );
-        if ($this->woocommerce->get('data')) {
-            $this->connexion_valide = true;
-        }
-    }
-}
-
-    public function upsert($method, $param)
-    {
-        ...
-        foreach ($param['data'] as $idDoc => $data) {
-                $param['method'] = $method;
-                $module = $param['module'];
-                $data = $this->checkDataBeforeCreate($param, $data, $idDoc);
-
-                if ('create' === $method) {
-                    unset($data['target_id']);
-                    $recordResult = $this->woocommerce->post($module, $data);
-                } else {
-                    $targetId = $data['target_id'];
-                    unset($data['target_id']);
-                    $recordResult = $this->woocommerce->put($module.'/'.$targetId, $data);
-                }          
-            ...
-        }
-    }
-    
-    public function read($param){
-    ...
-        $response = $this->woocommerce->get($module, [
-            'orderby' => 'modified',
-            'per_page' => $this->callLimit,
-            'page' => $page, ]
-        );
-    ...        
-    }
-    ...
-````
-
 ### Add the new connector to your current database
 
 In your terminal, load Myddleware fixtures. This will store your new connector's name inside the database.
@@ -178,7 +94,7 @@ You can use the code of another class for inspiration. For example, check out [S
         use Symfony\Component\Form\Extension\Core\Type\PasswordType;
         use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-        class SuiteCRM extends Solution
+        class suitecrm extends Solution
         {
         protected $limitCall = 100;
         protected $urlSuffix = '/service/v4_1/rest.php';
@@ -250,7 +166,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 ...
 
-class woocommercecore extends solution
+class woocommerce extends solution
 {
     public function getFieldsLogin()
     {
@@ -522,7 +438,7 @@ namespace App\Solutions;
 
 use Automattic\WooCommerce\Client;
 
-class woocommercecore extends solution
+class woocommerce extends solution
 {
 
 ...
@@ -809,7 +725,7 @@ namespace App\Solutions;
 
 use Automattic\WooCommerce\Client;
 
-class woocommercecore extends solution
+class woocommerce extends solution
 {
 
 ... 
