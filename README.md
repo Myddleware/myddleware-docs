@@ -198,7 +198,12 @@ Fill in the form to create your Myddleware credentials (email, username & passwo
 At the root of your /myddleware directory, you need to create a .env.local file (it should be at the same level as the .env & .env.example files). If you've followed the installation from GitHub above, all you will need to do here is to fill in the .env.local file with the following information :
 
 ```env
-DATABASE_URL="mysql://username:password@host:port/dbname"
+DATABASE_HOST=your_host
+DATABASE_PORT=your_port
+DATABASE_NAME=your_dbname
+DATABASE_USER=your_db_username
+DATABASE_PASSWORD=your_db_password
+
 APP_ENV=prod
 APP_DEBUG=false
 APP_SECRET=ThisSecretIsNotSoSecretChangeIt
