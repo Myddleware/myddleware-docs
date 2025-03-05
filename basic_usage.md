@@ -57,7 +57,7 @@ To create a rule, log in to your Myddleware instance then click on **Rules** the
 
 First, you need to choose your environment's source and target connectors (see 1), then you will select the two modules you need to sync (see 2 & 3).
 
-![Create rule](images/basic_usage/rule/rule2.png)
+![Create rule](images/basic_usage/rule/rule2.PNG)
 
 Do not forget to give a name to your rule, otherwise you won’t be able to select your modules. In the example above, we've chosen to create a rule which will have Moodle as a **source** from which to read data, which will then be sent to SuiteCRM as a **target**.
 
@@ -75,7 +75,7 @@ To map your fields, you just have to drag and drop the source field to the targe
 
 > NB: please note you don't need to map *all* source/target fields, you can simply select a few if that's what you need. However, some of them will be required, depending on the target application. Required fields will be marked with a star symbol next to their name in Myddleware.
 
-![Create rule](images/basic_usage/rule/rule3.PNG)
+![Create rule](images/basic_usage/rule/create_rule_moodle_email_fields.png)
 
 #### Apply formulae to transform data before it is sent to the target app
 
