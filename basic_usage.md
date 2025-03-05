@@ -59,11 +59,11 @@ First, you need to choose your environment's source and target connectors (see 1
 
 ![Create rule](images/basic_usage/rule/rule2.png)
 
-Do not forget to give a name to your rule, otherwise you won’t be able to select your modules. In the example above, we've chosen to create a rule which will have Prestashop as a **source** from which to read data, which will then be sent to SuiteCRM as a **target**.
+Do not forget to give a name to your rule, otherwise you won’t be able to select your modules. In the example above, we've chosen to create a rule which will have Moodle as a **source** from which to read data, which will then be sent to SuiteCRM as a **target**.
 
 #### Select modules
 
-In our example, we selected  ```the e-shop s customers``` as a source module, meaning that Myddleware will read data from there, transform it and then send it to SuiteCRM's ```Accounts```  target module.  
+In our example, we selected  ```Accounts``` as a source module, meaning that Myddleware will read data from there, transform it and then send it to SuiteCRM's ```Accounts```  target module.  
 
 !> It is important to know exactly from which module the data you need comes from, and in which module you want it to be copied. Indeed, you won't be able to change this part later.
 
@@ -75,7 +75,7 @@ To map your fields, you just have to drag and drop the source field to the targe
 
 > NB: please note you don't need to map *all* source/target fields, you can simply select a few if that's what you need. However, some of them will be required, depending on the target application. Required fields will be marked with a star symbol next to their name in Myddleware.
 
-![Create rule](images/basic_usage/rule/rule3.png)
+![Create rule](images/basic_usage/rule/rule3.PNG)
 
 #### Apply formulae to transform data before it is sent to the target app
 
