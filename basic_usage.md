@@ -63,7 +63,7 @@ Do not forget to give a name to your rule, otherwise you won’t be able to sele
 
 #### Select modules
 
-In our example, we selected  ```Accounts``` as a source module, meaning that Myddleware will read data from there, transform it and then send it to SuiteCRM's ```Accounts```  target module.  
+In our example, we selected  ```users``` as a source module, meaning that Myddleware will read data from there, transform it and then send it to SuiteCRM's ```Accounts```  target module.  
 
 !> It is important to know exactly from which module the data you need comes from, and in which module you want it to be copied. Indeed, you won't be able to change this part later.
 
@@ -71,7 +71,7 @@ In our example, we selected  ```Accounts``` as a source module, meaning that Myd
 
 Once you've named & decided on the modules you want to synchronise, you will be redirected to the fields mapping step. This is where you will define the general pattern for each data transfer made by your rule, field by field.
 
-To map your fields, you just have to drag and drop the source field to the target field. For instance, here we've selected the ```email``` source field from the ```Customers``` module of our PrestaShop application and we've place it in the ```email1``` target field from the ```Accounts``` module of our SuiteCRM application. You can map as many fields as you need and can even send multiple sources into one target.
+To map your fields, you just have to drag and drop the source field to the target field. For instance, here we've selected the ```email``` source field from the ```users``` module of our Moodle application and we've place it in the ```email1``` target field from the ```Accounts``` module of our SuiteCRM application. You can map as many fields as you need and can even send multiple sources into one target.
 
 > NB: please note you don't need to map *all* source/target fields, you can simply select a few if that's what you need. However, some of them will be required, depending on the target application. Required fields will be marked with a star symbol next to their name in Myddleware.
 
@@ -86,9 +86,9 @@ Indeed, for each target field, you can create a formula to modify the source dat
 
 ###### Simple string concatenation formula example
 
-In our example, we want to map PrestaShop customers' data to be sent to SuiteCRM's ```Accounts``` module. 
-However, PrestaShop only maps customers' ```first_name``` and ```last_name``` whereas SuiteCRM provides us with a ```name``` field. 
-Ideally, we would want to add up our source's  ```first_name``` and ```last_name``` in order to fit SuiteCRM's name field's logic. 
+In our example, we want to map Moodle users' data to be sent to SuiteCRM's ```Accounts``` module. 
+However, Moodle only maps users' ```firstname``` and ```lastname``` whereas SuiteCRM provides us with a ```name``` field. 
+Ideally, we would want to add up our source's  ```firstname``` and ```lastname``` in order to fit SuiteCRM's name field's logic. 
 To do so, we need to drag and drop ```first_name``` and ```last_name```, and create a formula to concatenate them.
 Then, click on the **Create a formula** button.
 
