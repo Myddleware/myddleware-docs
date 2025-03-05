@@ -268,7 +268,7 @@ Note that you can see in the history column, on the right, that at the top there
 
 ##### Handling documents in error
 
-When a document (data transfer) is in error, you can modify it, by resending it or cancelling it. 
+When a document (which is the record of the data transfer in myddleware) is in error, you can modify it, by resending it or cancelling it. 
 To be able to modify the document data, double-click on target data, change the data and click on the validation icon.
 
 ![Single documents view: double-click on target data transfer field to tweak it & then click on reload or cancel the transfer](images/basic_usage/document/document_tweak_data_transfer_error.png)
@@ -279,7 +279,7 @@ You can reload or cancel multiple documents at the same time.
 
 > Only documents in error can be reloaded or cancelled.
 
-Click on the checkboxes to select the transfer(s) you want to reload or cancel and click on ``Cancel transfers`` or ``Reload transfers``.
+Click on the checkboxes to select the document(s) you want to reload or cancel and click on ``Cancel documents`` or ``Reload documents``.
 
 ![Select the documents in error then click on cancel documents or reload documents](images/basic_usage/document/documents_list_cancel_rerun_documents_in_error_buttons.png)
 
