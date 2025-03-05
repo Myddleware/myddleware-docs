@@ -262,7 +262,9 @@ You can also access the detail for each individual document by clicking on it.
 
 ![Single document details](images/basic_usage/rule/document_detail.png)
 
-You will then be able to see what Myddleware has read in the source application and what has been sent into the target application.
+You will then be able to see what Myddleware has read in the source application and what has been sent into the target application. 
+
+Note that you can see in the history column, on the right, that at the top there is a field value in yellow. This is to higlight that the field was modified, and you can see that the value was previously "Property actually various." and that it is now "Property actually truck".
 
 ##### Handling documents in error
 
