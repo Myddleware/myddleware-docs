@@ -23,7 +23,7 @@ gantt
     section Sprint 3 (June-July 2025)
     Terminal             :2025-06-04, 2025-07-09
     Gestion users        :2025-06-04, 2025-07-09
-    Classement règles    :2025-06-04, 2025-07-09
+    Class. règles        :2025-06-04, 2025-07-09
     End date jobs        :2025-06-04, 2025-07-09
 
     section Sprint 4 (July-August 2025)
@@ -42,7 +42,7 @@ gantt
     section Sprint 6 (October-November 2025)
     Création listes        :2025-10-15, 2025-11-19
     Change value          :2025-10-15, 2025-11-19
-    Duplication tables    :2025-10-15, 2025-11-19
+    Duplic. tables        :2025-10-15, 2025-11-19
     Rerun mass           :2025-10-15, 2025-11-19
     Favoris docs         :2025-10-15, 2025-11-19
     Evolution search     :2025-10-15, 2025-11-19
