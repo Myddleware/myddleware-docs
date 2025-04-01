@@ -6,7 +6,7 @@ gantt
     dateFormat YYYY-MM-DD
     axisFormat %B %Y
 
-    section Sprint 1 (March 2025)
+    section Sprint 1
     Connecteur Act-On       :2025-03-12, 2025-04-25
     Connecteur SuiteCRM    :2025-03-12, 2025-04-25
     Upgrade Symphony       :2025-03-12, 2025-04-25
