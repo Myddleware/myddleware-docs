@@ -82,5 +82,25 @@
   <script src="//cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
   <script src="//unpkg.com/docsify-include-template/dist/docsify-include-template.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+  <!-- Mermaid Support -->
+  <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    var num = 0;
+    mermaid.initialize({ startOnLoad: false });
+
+    window.$docsify.markdown = {
+      renderer: {
+        code: function(code, lang) {
+          if (lang === "mermaid") {
+            return (
+              '<div class="mermaid">' + code + "</div>"
+            );
+          }
+          return this.origin.code.apply(this, arguments);
+        }
+      }
+    };
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-mermaid@1.0.0/dist/docsify-mermaid.js"></script>
 </body>
 </html>
