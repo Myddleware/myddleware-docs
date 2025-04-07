@@ -42,7 +42,7 @@ file permissions to be updated.
 Now, all you need to do is set up the “jobScheduler” scheduled task that will launch all the other Myddleware tasks:
 
 ```bash
-php bin/console myddleware:jobScheduler --env=background
+php bin/console myddleware:cronrun --env=background
 ```
 
 This jobScheduler task will read the JobScheduler table and start the tasks according to the parameters of this table. You can manage this table directly from Myddleware
