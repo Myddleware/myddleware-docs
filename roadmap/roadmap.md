@@ -70,16 +70,17 @@ gantt
     section Sprint 1
     Act-On Connector    :done, 2025-03-12, 2025-04-25
     SuiteCRM Connector    :done, 2025-03-12, 2025-04-25
-    Symphony Upgrade       : 2025-03-12, 2025-04-25
-    Librairies Upgrade    :2025-03-12, 2025-04-25
-    2FA Implementation           :done, 2025-03-12, 2025-04-25
-    MintHCM Connector    :2025-03-12, 2025-04-25
+    Symphony Upgrade       :done, 2025-03-12, 2025-04-25
+    Librairies Upgrade    :done, 2025-03-12, 2025-04-25
+    2FA Implementation          :done, 2025-03-12, 2025-04-25
 
     section Sprint 2
+    MintHCM Connector    :2025-04-01, 2025-06-04
     Profile UI        :2025-04-25, 2025-06-04
     Documents UI         :2025-04-25, 2025-06-04
     Rule Deletion       :2025-04-25, 2025-06-04
     Env. Transport     :2025-04-25, 2025-06-04
+    Rulegroup UI        :2025-04-25, 2025-06-04
 
     section Sprint 3
     Add Terminal             :2025-06-04, 2025-07-09
