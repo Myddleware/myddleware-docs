@@ -572,6 +572,10 @@ Here is the list of available modules in source (reading) and target (writing) :
 
 [![YouTube Channel Views](https://img.shields.io/youtube/channel/views/UCxI0ziSiRXXTqQ-XfFJr7-w?style=social)](https://www.youtube.com/channel/UCxI0ziSiRXXTqQ-XfFJr7-w)
 
+![Link for the moodle plugin](https://moodle.org/plugins/local_myddleware)
+
+![Link for the location of the xml file](https://github.com/Myddleware/moodle-local_myddleware/blob/main/role/myddleware_moodle_role_2.2.xml)
+
 Go to the administration of the site and then ``Plugins`` and ``Install plugins``
 
 ![Install plugins](images/moodle/install_plugins.png)
