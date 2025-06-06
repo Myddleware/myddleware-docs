@@ -131,23 +131,15 @@ docker-compose up --build
 
 ```
 
-This will build a Myddleware image containing the Myddleware container (PHP with Apache) as well as a Node.js container to handle assets and a MySQL container for your database.
+Once your container is built, you can now go to <http://localhost:30080>, where you should see the Myddleware homescreen.
 
-Once the images are up and running, you need to go to the Node.js terminal and type :
+To connect to the MySQL database, including in the myddleware installation, use the following credentials :
 
-```yarn
-yarn install
-yarn build
-
-```
-
-Once your assets are built, you can now go to <http://localhost:30080>, where you should see the Myddleware homescreen.
-
-To connect to the MySQL database, use the following credentials :
-
-- **username** : myddleware
-- **database** : myddleware
+- **host** : mysql
+- **username** : root
 - **password** : secret
+- **database** : myddleware
+- **port** : 3306
 
 #### Build the Myddleware image with Docker(developer's mode)
 
