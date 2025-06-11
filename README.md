@@ -141,6 +141,11 @@ To connect to the MySQL database, including in the myddleware installation, use 
 - **database** : myddleware
 - **port** : 3306
 
+note that you can set the password in the docker.env.example, instead of secret:
+
+mysql_root_password=MyCustomPassword
+mysql_password=MyCustomPassword
+
 #### Build the Myddleware image with Docker(developer's mode)
 
 ##### Build the container
