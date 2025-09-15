@@ -105,7 +105,7 @@ Start by cloning the repository inside a directory (the command below will not c
 
 git clone https://github.com/Myddleware/myddleware.git .
 
-To es your password you have two options : either in .env or when you run docker compose up -d
+To set your password you have two options : either in .env or when you run docker compose up -d
 
 with the arguments in the command: 
 
