@@ -100,7 +100,41 @@ unzip myddleware.zip -d <myddleware_dirname>
 
 #### **Docker install**
 
-You can use the Docker config files provided to install Myddleware if you want to reproduce our developer's environment or deploy it using Kubernetes for example.
+
+Start by cloning the repository inside a directory (the command below will not create a directory but clone inside the current directory)
+
+git clone https://github.com/Myddleware/myddleware.git .
+
+To es your password you have two options : either in .env or when you run docker compose up -d
+
+with the arguments in the command: 
+
+mysql_password=myStrongPass mysql_root_password=myRootPass docker-compose up -d
+
+or in .env: 
+
+mysql_password=myStrongPass
+mysql_root_password=myRootPass
+
+then run docker compose up -d
+
+after this, all you have to do next is to to the url, if it is a local docker then you can go to
+
+http://localhost:30080/index.php/
+
+then click on the install button and follow the instructions. 
+
+by default, the information for the mysql connection will be as follow
+
+host: mysql
+
+port: 3306
+
+database name: myddleware
+
+sql user: myddleware
+
+sql password: secret
 
 #### Using the Myddleware Makefile
 
