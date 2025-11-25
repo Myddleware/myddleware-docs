@@ -136,6 +136,53 @@ sql user: myddleware
 
 sql password: secret
 
+#### Setting up cron jobs in Docker
+
+To enable scheduled tasks in your Docker container, you'll need to install and configure cron. Follow these steps:
+
+##### Inside the Docker container
+
+1. Install nano and cron:
+
+```bash
+apt update
+apt install -y cron nano
+```
+
+2. Open the crontab editor:
+
+```bash
+crontab -e
+```
+
+3. Add the following line to run the Myddleware cron command every 5 minutes:
+
+```bash
+*/5 * * * * cd /var/www/html && /usr/local/bin/php bin/console myddleware:cronrun --env=background >> /var/log/cron.log 2>&1
+```
+
+4. Save and exit the editor.
+
+5. Start the cron service:
+
+```bash
+service cron start
+```
+
+##### Running the foreground script
+
+In the `docker/script` directory, run:
+
+```bash
+./myddleware-foreground.sh
+```
+
+If you encounter a permission denied error, grant execute permissions:
+
+```bash
+chmod +x myddleware-foreground.sh
+```
+
 #### Using the Myddleware Makefile
 
 > Make isn't available on Windows systems. If you want to use them on your Windows machine, you will need to set up [WSL](https://docs.microsoft.com/en-us/windows/wsl/).
