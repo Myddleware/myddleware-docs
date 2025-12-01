@@ -40,7 +40,7 @@ Find us here : [www.myddleware.com](https://www.myddleware.com)
 
 ### Download Myddleware
 
-You can download Myddleware in 2 different ways :
+You can download Myddleware in 3 different ways :
 
 <!-- tabs:start -->
 

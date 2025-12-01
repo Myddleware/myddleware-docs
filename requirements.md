@@ -1,16 +1,17 @@
 # Technical Requirements
 
-!> We are actively working on a [Docker](https://www.docker.com/) configuration for Myddleware. Once released, you will be able to install Myddleware using Docker too, which means we will ensure all requirements below are met.
+Myddleware can be installed using [Docker](https://www.docker.com/) for a complete development and deployment environment.
 
 To use Myddleware you need the following on your web server :
 
 - A web server such as [Apache](https://httpd.apache.org/)
-- [MySQL](https://www.mysql.com/downloads/) version 5.7 or above or [MariaDB](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.5&os=windows&cpu=x86_64&pkg=msi&m=xtom_ams)
+- [MySQL](https://www.mysql.com/downloads/) version 8.4 or above or [MariaDB](https://mariadb.org/download/)
 
-| Myddleware versions  | [PHP version](https://www.php.net/downloads.php) | [Node.js version](https://nodejs.org/de/download/) |
-|----------------------|--------------------------------------------------|----------------------------------------------------|
-| 3.2.0 and below      | 7.4 or 8.0                                       | 14, 15 and 16                                      |
-| 3.3.0                | 8.1 or 8.2.0                                     | 16 or above                                        |
+| Myddleware versions  | [PHP version](https://www.php.net/downloads.php) | [Node.js version](https://nodejs.org/de/download/) | [MySQL version](https://www.mysql.com/downloads/) |
+|----------------------|--------------------------------------------------|----------------------------------------------------|---------------------------------------------------|
+| 3.2.0 and below      | 7.4 or 8.0                                       | 14, 15 and 16                                      | 5.7 or above                                      |
+| 3.3.0                | 8.1 or 8.2.0                                     | 16 or above                                        | 5.7 or above                                      |
+| 4.2.0 and above      | 8.1, 8.2, or 8.3                                 | 20 or above                                        | 8.4 or above                                      |
 
 - The following PHP extensions need to be installed & enabled (they usually are by default):
   - Ctype
