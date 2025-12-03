@@ -254,6 +254,8 @@ If you encounter a permission denied error, grant execute permissions:
 chmod +x myddleware-foreground.sh
 ```
 
+For Windows, you can use the Task Scheduler and create a task that executes the command.
+
 ## Setting up your Myddleware environment
 
 At this stage, to set up Myddleware, you can either follow our installation wizard by going to your Myddleware URL or if you're comfortable with using a terminal, you can execute a series of commands.
