@@ -100,6 +100,7 @@ unzip myddleware.zip -d <myddleware_dirname>
 
 #### **Docker install**
 
+##### Basic setup
 
 Start by cloning the repository inside a directory (the command below will not create a directory but clone inside the current directory)
 
@@ -107,11 +108,11 @@ git clone https://github.com/Myddleware/myddleware.git .
 
 To set your password you have two options : either in .env or when you run docker compose up -d
 
-with the arguments in the command: 
+with the arguments in the command:
 
 mysql_password=myStrongPass mysql_root_password=myRootPass docker-compose up -d
 
-or in .env: 
+or in .env:
 
 mysql_password=myStrongPass
 mysql_root_password=myRootPass
@@ -122,7 +123,7 @@ after this, all you have to do next is to to the url, if it is a local docker th
 
 http://localhost:30080/index.php/
 
-then click on the install button and follow the instructions. 
+then click on the install button and follow the instructions.
 
 by default, the information for the mysql connection will be as follow
 
@@ -136,7 +137,7 @@ sql user: myddleware
 
 sql password: secret
 
-#### Using the Myddleware Makefile
+##### Using the Myddleware Makefile
 
 > Make isn't available on Windows systems. If you want to use them on your Windows machine, you will need to set up [WSL](https://docs.microsoft.com/en-us/windows/wsl/).
 
@@ -154,9 +155,9 @@ make build
 make run
 ```
 
-#### Build the Myddleware image with docker-compose (developer's mode)
+##### Building with docker-compose (developer's mode)
 
-##### Build the container locally
+###### Build the container locally
 
 Run the following commands in your myddleware directory :
 
@@ -180,9 +181,9 @@ note that you can set the password in the docker.env.example, instead of secret:
 mysql_root_password=MyCustomPassword
 mysql_password=MyCustomPassword
 
-#### Build the Myddleware image with Docker(developer's mode)
+##### Building with Docker (developer's mode)
 
-##### Build the container
+###### Build the container
 
 If you choose to build Myddleware using Docker on its own, you will need to set up your database environment variables and connect Myddleware to it as this image doesn't provide a Myddleware database.
 
@@ -190,7 +191,7 @@ If you choose to build Myddleware using Docker on its own, you will need to set 
 docker build . -t myddleware
 ```
 
-#### Run
+###### Run
 
 ```docker
 docker run -d -p 30080:80 myddleware
@@ -200,11 +201,11 @@ You can then access your Myddleware instance by going to ```http://localhost:300
 
 <!-- tabs:end -->
 
-#### Setting up cron jobs in Docker or linux
+### Setting up cron jobs in Docker or Linux
 
 To enable scheduled tasks in your Docker container (or linux machine / WSL), you'll need to install and configure cron. Follow these steps:
 
-##### Inside the Docker container
+#### Inside the Docker container
 
 1. Install nano and cron:
 
@@ -224,9 +225,12 @@ crontab -e
 ```bash
 */5 * * * * cd /var/www/html && /usr/local/bin/php bin/console myddleware:cronrun --env=background >> /var/log/cron.log 2>&1
 ```
-3.5. You can only do the cronrun command if you have Myddleware Premium. If you don't use 
 
+**Note:** You can only use the `cronrun` command if you have Myddleware Premium. If you don't have Premium, use:
+
+```bash
 */5 * * * * cd /var/www/html && /usr/local/bin/php bin/console myddleware:synchro ALL --env=background >> /var/log/cron.log 2>&1
+```
 
 4. Save and exit the editor.
 
@@ -236,7 +240,7 @@ crontab -e
 service cron start
 ```
 
-##### Running the foreground script
+#### Running the foreground script
 
 In the `docker/script` directory, run:
 
