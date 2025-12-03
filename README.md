@@ -136,53 +136,6 @@ sql user: myddleware
 
 sql password: secret
 
-#### Setting up cron jobs in Docker
-
-To enable scheduled tasks in your Docker container, you'll need to install and configure cron. Follow these steps:
-
-##### Inside the Docker container
-
-1. Install nano and cron:
-
-```bash
-apt update
-apt install -y cron nano
-```
-
-2. Open the crontab editor:
-
-```bash
-crontab -e
-```
-
-3. Add the following line to run the Myddleware cron command every 5 minutes:
-
-```bash
-*/5 * * * * cd /var/www/html && /usr/local/bin/php bin/console myddleware:cronrun --env=background >> /var/log/cron.log 2>&1
-```
-
-4. Save and exit the editor.
-
-5. Start the cron service:
-
-```bash
-service cron start
-```
-
-##### Running the foreground script
-
-In the `docker/script` directory, run:
-
-```bash
-./myddleware-foreground.sh
-```
-
-If you encounter a permission denied error, grant execute permissions:
-
-```bash
-chmod +x myddleware-foreground.sh
-```
-
 #### Using the Myddleware Makefile
 
 > Make isn't available on Windows systems. If you want to use them on your Windows machine, you will need to set up [WSL](https://docs.microsoft.com/en-us/windows/wsl/).
@@ -246,6 +199,56 @@ docker run -d -p 30080:80 myddleware
 You can then access your Myddleware instance by going to ```http://localhost:30080/index.php```
 
 <!-- tabs:end -->
+
+#### Setting up cron jobs in Docker or linux
+
+To enable scheduled tasks in your Docker container (or linux machine / WSL), you'll need to install and configure cron. Follow these steps:
+
+##### Inside the Docker container
+
+1. Install nano and cron:
+
+```bash
+apt update
+apt install -y cron nano
+```
+
+2. Open the crontab editor:
+
+```bash
+crontab -e
+```
+
+3. Add the following line to run the Myddleware cron command every 5 minutes:
+
+```bash
+*/5 * * * * cd /var/www/html && /usr/local/bin/php bin/console myddleware:cronrun --env=background >> /var/log/cron.log 2>&1
+```
+3.5. You can only do the cronrun command if you have Myddleware Premium. If you don't use 
+
+*/5 * * * * cd /var/www/html && /usr/local/bin/php bin/console myddleware:synchro ALL --env=background >> /var/log/cron.log 2>&1
+
+4. Save and exit the editor.
+
+5. Start the cron service:
+
+```bash
+service cron start
+```
+
+##### Running the foreground script
+
+In the `docker/script` directory, run:
+
+```bash
+./myddleware-foreground.sh
+```
+
+If you encounter a permission denied error, grant execute permissions:
+
+```bash
+chmod +x myddleware-foreground.sh
+```
 
 ## Setting up your Myddleware environment
 
