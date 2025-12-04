@@ -1,33 +1,27 @@
 # Currently-supported Connectors
 
+- Acton
 - Airtable
-- Bittle
-- Dolist
-- CirrhusShield
+- Brevo
 - ERPNext
-- Eventbrite
 - Facebook
 - Hubspot
+- Iomad
 - Magento
 - Mailchimp
-- Mautic
+- Microsoft Dynamics
 - Microsoft SQL
 - Moodle
 - MySQL
 - OracleDB
 - PostgreSQL
 - Prestashop
-- RingCentral
-- Sage CRM
 - Salesforce
 - SAP CRM
-- Sendinblue
 - SugarCRM
 - SuiteCRM
 - Vtiger
-- Woocommerce
-- Woocommerce Event Manager (WordPress Plugin)
-- Wordpress
+- Yousign
 - Zuora  
 
 We also connect File via FTP and Database.
