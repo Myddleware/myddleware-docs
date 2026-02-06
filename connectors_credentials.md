@@ -82,6 +82,41 @@ To create your hubspot connector, you will need your API key.
 
 ![Hubspot connector credentials Myddleware form](images/credentials/hubspot_connector_credentials.png)
 
+### Microsoft Dynamics CRM
+
+Myddleware can read and write all Microsoft Dynamics CRM (Dynamics 365 / Dataverse) modules, including custom entities.
+
+To create your Microsoft Dynamics CRM connector, you will need:
+
+- Tenant ID (Azure AD tenant identifier)
+- Client ID (Application ID from Azure AD app registration)
+- Client Secret (Application secret from Azure AD app registration)
+- Organization URL (e.g., https://yourorg.crm.dynamics.com)
+
+![Microsoft Dynamics CRM connector credentials Myddleware form](images/credentials/dynamicscrm_connector_credentials.png)
+
+#### How to obtain your credentials
+
+1. Navigate to the [Azure Portal](https://portal.azure.com)
+2. Go to **Azure Active Directory** → **App registrations** → **New registration**
+3. Register your application:
+   - Name: "Myddleware Integration"
+   - Supported account types: Choose appropriate option for your organization
+   - Click **Register**
+4. Note the **Application (client) ID** and **Directory (tenant) ID** from the Overview page
+5. Configure API permissions:
+   - Go to **API permissions** → **Add a permission**
+   - Select **Dynamics CRM** → **Application permissions**
+   - Add required permissions (e.g., `user_impersonation` or specific entity permissions)
+   - Click **Grant admin consent**
+6. Create a client secret:
+   - Go to **Certificates & secrets** → **New client secret**
+   - Add a description and select expiration period
+   - **Copy the secret value immediately** (it won't be shown again)
+7. Your Organization URL can be found in your Dynamics 365 instance (e.g., https://yourorg.crm.dynamics.com)
+
+> Note: Ensure your Azure AD app has appropriate permissions in your Dynamics CRM instance. You may need to create an application user in Dynamics.
+
 ### SageCRM
 
 Myddleware can read and write all Sage CRM modules, even the custom ones.
@@ -165,6 +200,14 @@ Here, you’ll find your ``Consumer Key`` and ``Consumer Secret`` which you can 
 
 ![Salesforce New Connected App form](images/credentials/salesforce_consumer_key.png)
 
+#### Alternative Authentication Method (Salesforce v2)
+
+Myddleware also supports an alternative authentication method for Salesforce using OAuth 2.0 client credentials flow, which may be simpler for server-to-server integrations.
+
+This method requires the same modules and capabilities as the standard Salesforce connector but uses a different authentication approach that doesn't require user interaction.
+
+> Note: Most users should use the standard Salesforce connector above. Use this alternative method only if you have specific requirements for client credentials authentication.
+
 ### SAP CRM
 
 The SAP CRM connector can only be installed by our team.
@@ -204,6 +247,31 @@ To connect SuiteCRM to Myddleware, you need:
 
 ![SuiteCRM connector credentials Myddleware form](images/credentials/suitecrm_connector_credentials.png)
 
+### SuiteCRM 8
+
+SuiteCRM 8 is a major rewrite with a different authentication mechanism. Myddleware can read and write in all SuiteCRM 8 modules, including custom ones.
+
+To connect SuiteCRM 8 to Myddleware, you need:
+
+- Your SuiteCRM 8 URL
+- Client ID (OAuth2 client identifier)
+- Client Secret (OAuth2 client secret)
+
+![SuiteCRM 8 connector credentials Myddleware form](images/credentials/suitecrm8_connector_credentials.png)
+
+#### Generating OAuth2 credentials in SuiteCRM 8
+
+1. Log in to your SuiteCRM 8 instance as an administrator
+2. Navigate to **Admin** → **OAuth2 Clients and Tokens**
+3. Click **Create OAuth2 Client**
+4. Fill in the details:
+   - Name: "Myddleware Integration"
+   - Secret: Generate a secure random string or let SuiteCRM generate one
+   - Is Confidential: Yes
+5. **Save** and copy the Client ID and Client Secret
+
+> Note: If you are using SuiteCRM 7.x, please refer to the [SuiteCRM 7](#suitecrm-7) section above. The authentication methods are different between versions.
+
 ### VTiger
 
 Myddleware can read and write into all Vtiger modules, even the custom ones.
@@ -233,6 +301,41 @@ To connect ERPNext to Myddleware, you need :
 - your URL
 
 ![ERPNext connector credentials Myddleware form](images/credentials/erpnext_connector_credentials.png)
+
+### Microsoft Dynamics Business Central
+
+Myddleware can read and write all Microsoft Dynamics Business Central modules, including custom entities. Business Central is organized by companies, and modules are accessed within the context of a specific company.
+
+To create your Microsoft Dynamics Business Central connector, you will need:
+
+- Tenant ID (Azure AD tenant identifier)
+- Client ID (Application ID from Azure AD app registration)
+- Client Secret (Application secret from Azure AD app registration)
+- Environment name (e.g., "Production" or "Sandbox")
+
+![Microsoft Dynamics Business Central connector credentials Myddleware form](images/credentials/dynamicsbusiness_connector_credentials.png)
+
+#### How to obtain your credentials
+
+1. Navigate to the [Azure Portal](https://portal.azure.com)
+2. Go to **Azure Active Directory** → **App registrations** → **New registration**
+3. Register your application:
+   - Name: "Myddleware Business Central Integration"
+   - Supported account types: Choose appropriate option for your organization
+   - Click **Register**
+4. Note the **Application (client) ID** and **Directory (tenant) ID** from the Overview page
+5. Configure API permissions:
+   - Go to **API permissions** → **Add a permission**
+   - Select **Dynamics 365 Business Central** → **Application permissions**
+   - Add `API.ReadWrite.All` or appropriate permissions
+   - Click **Grant admin consent**
+6. Create a client secret:
+   - Go to **Certificates & secrets** → **New client secret**
+   - Add a description and select expiration period
+   - **Copy the secret value immediately** (it won't be shown again)
+7. Your Environment name is typically "Production" for live instances or "Sandbox" for test environments
+
+> Note: The environment name is case-sensitive. Check your Business Central admin center for the exact environment name.
 
 ## E-commerce apps
 
@@ -319,6 +422,25 @@ To connect Shop application to Myddleware, you need these parameters :
 
 
 ## E-marketing platforms
+
+### Act-On
+
+Act-On is a marketing automation platform. Myddleware can integrate with Act-On to synchronize contact and list data.
+
+To create your Act-On connector, you will need:
+
+- Client ID (OAuth2 client identifier)
+- Client Secret (OAuth2 client secret)
+- Username (your Act-On account username)
+- Password (your Act-On account password)
+
+![Act-On connector credentials Myddleware form](images/credentials/acton_connector_credentials.png)
+
+#### How to obtain your Act-On credentials
+
+Contact your Act-On administrator or account representative to obtain OAuth2 credentials for API access. You will need API access enabled on your Act-On account.
+
+> Note: Act-On uses OAuth 2.0 password grant flow for authentication.
 
 ### Dolist
 
@@ -409,7 +531,9 @@ To connect Mautic to Myddleware, you need :
 
 ![Mautic connector credentials Myddleware form](images/credentials/mautic_connector_credentials.png)
 
-### Sendinblue
+### Brevo (formerly Sendinblue)
+
+> Note: Brevo was formerly known as Sendinblue. If you're looking for Sendinblue documentation, you're in the right place! The service was rebranded to Brevo in 2023.
 
 Myddleware is able to read the following modules :
 
@@ -495,6 +619,27 @@ This manual should help you : [Installing/Configuring PDO](https://www.php.net/m
 - 'Discount_Codes' => 'Event
 - 'Attendees' => 'Event
 - 'Users' => 'User
+
+### Internal List
+
+The Internal List connector allows you to manage and synchronize data within Myddleware using internal data lists. This is useful for maintaining reference data, lookup tables, or internal mappings that don't come from an external system.
+
+Myddleware can read and write data to internal lists.
+
+To create your Internal List connector, you will need:
+
+- A list name identifier
+
+#### When to use Internal List
+
+The Internal List connector is particularly useful for:
+
+- Maintaining reference data (e.g., country codes, product categories, status mappings)
+- Creating lookup tables for data transformation during synchronization
+- Storing intermediate data during complex multi-step synchronizations
+- Managing data that needs to be shared across multiple rules
+
+> Tip: Internal Lists provide a way to store and reuse data within Myddleware without needing an external application.
 
 ### Facebook
 
@@ -768,5 +913,26 @@ To create a Zuora connector, you will need:
 - Finally, if you're connecting to a sandbox, please write ``1`` or ``0`` if you're connecting a production environment
 
 ![Zuora connector credentials Myddleware form](images/credentials/zuora_connector_credentials.png)
+
+### YouSign
+
+Myddleware can read and write data from YouSign, an electronic signature platform.
+
+To create a YouSign connector, you will need:
+
+- API key (your YouSign API key)
+- Sandbox (enter `1` for staging/sandbox environment or `0` for production)
+
+![YouSign connector credentials Myddleware form](images/credentials/yousign_connector_credentials.png)
+
+#### How to obtain your YouSign API key
+
+1. Log in to your YouSign account
+2. Navigate to your account settings or API settings section
+3. Generate or retrieve your API key
+4. If you're testing, make sure to use the staging API key and set sandbox to `1`
+5. For production use, use your production API key and set sandbox to `0`
+
+> Note: YouSign API documentation is available at [https://dev.yousign.com/](https://dev.yousign.com/)
 
 

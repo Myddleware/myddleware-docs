@@ -1,15 +1,17 @@
 # Currently-supported Connectors
 
-- Acton
+- Act-On
 - Airtable
 - Brevo
 - ERPNext
 - Facebook
 - Hubspot
 - Iomad
+- Internal List
 - Magento
 - Mailchimp
-- Microsoft Dynamics
+- Microsoft Dynamics Business Central
+- Microsoft Dynamics CRM
 - Microsoft SQL
 - Moodle
 - MySQL
@@ -19,7 +21,7 @@
 - Salesforce
 - SAP CRM
 - SugarCRM
-- SuiteCRM
+- SuiteCRM (7 & 8)
 - Vtiger
 - Yousign
 - Zuora  
