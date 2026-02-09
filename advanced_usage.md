@@ -120,144 +120,164 @@ Constant function that allows you to cancel the actual document
 
         "mdw_cancel_document"
 
-## Relationships
+## Linking Data Across Rules with Lookup Formulas
 
-We can create relationships in Myddleware that not only allow us to transfer unrelated data items but whole data models entirely.
+When transferring data between applications, you often need to link related records across different rules. For example, when sending Moodle ``Users`` to Salesforce ``Contacts``, you may need to reference the Salesforce ``Account ID`` that was created by a previous rule that transferred Moodle ``Users`` to Salesforce ``Accounts``.
 
-For instance, let's imagine we have a Prestashop to SuiteCRM rule which transfers customers. 
-Now, if for instance we wanted to add another rule allowing us to send Prestashop ``orders`` to SuiteCRM ``opportunities``.
-to send an ``order`` to SuiteCRM, we have to link it to the related ``account``. 
-In order to do so, we need to retrieve the account's id corresponding to the customer linked to the order in Prestashop.
+**The recommended approach is to use the `lookup()` function in formulas**, which allows you to retrieve target IDs from source IDs from a previous rule and vice versa.
 
-To do that, we will link this new rule to the previous rule where we will be able to find the SuiteCRM account id.
+### Using the Lookup Function
 
-### Use case 1: One-to-Many relationships
+The lookup function is the modern and recommended way to link data across rules. It retrieves the corresponding ID from a related rule based on the source data.
+
+**Syntax:**
+```php
+lookup(field, rule_id, errorifempty, errorifnotfound)
+```
+
+**Parameters:**
+- `field`: The source field containing the ID you want to lookup
+- `rule_id`: The ID of the related rule where the mapping exists
+- `errorifempty`: Set to 1 to generate an error if the field is empty, 0 otherwise
+- `errorifnotfound`: Set to 1 to generate an error if no match is found, 0 otherwise
+
+### Use Case 1: One-to-Many Relationships
 
 > A One-to-Many relationship is when data from 1 module of your source app is sent to multiple modules in your target app.
-For instance, the data from the Customer module of your source application (e.g. Prestahop in our example) will be sent 
-to both Account & Contact modules in our target SuiteCRM.
+For instance, the data from the Users module in Moodle will be sent to both Accounts & Contacts modules in Salesforce.
 
-#### Concrete example 
+#### Concrete Example
 
-First, create a rule which sends Prestashop ``the e-shop s customers`` to SuiteCRM ``Accounts``. 
+First, create a rule which sends Moodle ``Users`` to Salesforce ``Accounts``.
 
-![Example Prestashop to SuiteCRM rule creation - Customers to Accounts](images/advanced_usage/create_rule_presta_suite_customer_account.png)
+![Example Moodle to Salesforce rule creation - Users to Accounts](images/advanced_usage/create_rule_moodle_salesforce_contacts.png)
 
-Then, create a second rule which will send data from the same Prestashop ``the e-shop s customers`` module to SuiteCRM’s ``Contacts`` module.
-Map some fields, such as firstname, lastname, birthday and email for instance.
+Note the Rule ID (you can find it in the URL or in the rule list). For example: `6b5432f1xxxxx`
 
-Then, in the ``Relationships`` tab of the rule creation view, we want to link the contacts to their accounts, which are 
-already set up to being sent to SuiteCRM's ``Account`` module in the first rule you created.
-In this scenario, Myddleware would have to retrieve the SuiteCRM account IDs from the previous rule 
-and send them into the contacts in order to link these contacts and the accounts that have already been created.
-Therefore, you need to select the following fields : 
+Then, create a second rule which will send data from the same Moodle ``Users`` to Salesforce ``Contacts``.
+Map some fields such as firstname, lastname, and email.
 
-| Source       | Rules                                        | Target      |
-|--------------|----------------------------------------------|-------------|
-| ID customers | name_of_your_first_Customer_to_Accounts_rule | Account ID  |
+Note this second rule's ID as well (e.g., `7d8765h3zzzzz`). You'll use it in Use Case 2 below.
 
-![Example Prestashop to SuiteCRM rule creation - Customers to Contacts - relationship selection view](images/advanced_usage/relationships_select_fields.png)
-![Succesful rule creation view with an alert](images/advanced_usage/successful_rule_creation.png)
-![List of available rules (the 2 rules we've just created)](images/advanced_usage/rule_list.png)
+In this second rule, to link the Contact to the Account created in the first rule, add a formula to the ``AccountId`` field (the field that links Contacts to Accounts in Salesforce):
 
-Now save the rule and run it. Don’t forget to select a reference date in the past if you want to retrieve data which already exists in Prestashop.
+```php
+lookup({id},"6b5432f1xxxxx",0,0)
+```
 
-Now open a document. You will find that Myddleware has linked the right account to the matching contact.
+This formula will:
+- Take the Moodle user ``id`` from the current record
+- Look up the corresponding Salesforce Account ID in rule `6b5432f1xxxxx` (the Users→Accounts rule)
+- Return that Account ID so the Contact will be linked to the correct Account
 
-The source document id is used twice in the source data : the first time for the contact and the second time for the account. 
-At this point, you have just created your first one-to-many relationship, ie one customer to 2 records (contact and account).
+Now save the rule and run it. Don't forget to select a reference date in the past if you want to retrieve data which already exists in Moodle.
 
-### Use case 2: Many-to-One relationships
+When you open a document, you will see that Myddleware has successfully linked the Contact to the correct Account using the lookup formula.
+
+### Use Case 2: Many-to-One Relationships
 
 > A Many-to-One relationship is when data from multiple modules of your source app is sent to a single module in your target app.
-For instance, the data from the ``Customer`` & ``Address`` modules of your source application (e.g. Prestahop in our example) will be sent 
-to the Account module in our target SuiteCRM.
+For instance, data from ``Users`` & ``Course Enrollments`` modules in Moodle might both need to reference the same ``Contact`` in Salesforce.
 
-#### Concrete example
+#### Concrete Example
 
-To illustrate Many-to-One relationships, we will first create an ``Addresses`` to ``Accounts`` rule (Prestashop to SuiteCRM).
-First, select ```The Customer, Brand and Customer addresses``` source module and ``Accounts`` as a target module.
+Assume you already have a rule that sends Moodle ``Users`` to Salesforce ``Contacts`` (rule ID: `7d8765h3zzzzz` - this is the second rule from Use Case 1 above).
 
-![Create a rule with The Customer, Brand and Customer addresses as a Prestashop source module & Accounts as a SuiteCRM target module](images/advanced_usage/rule_creation_addresses.png)
+Now you want to create a rule that sends Moodle ``Course Enrollments`` to Salesforce ``Campaign Members``, and you need to link each enrollment to the correct Contact that was created from the user.
 
-Map some fields such as ``address1``, ``address2``, ``city``, ``postcode``, etc.
+In your Enrollments to Campaign Members rule, when mapping the Contact reference field (e.g., ``ContactId``), use this formula:
 
-![Simulate fields mapping for Address to Accounts rule](images/advanced_usage/address_fields_simulation.png)
+```php
+lookup({userid},"7d8765h3zzzzz",0,1)
+```
 
-Then open the “Relationship” tab. We want to send the addresses to the accounts that have already been sent to SuiteCRM 
-in a previous rule. Just like the one to many relationship scenario, Myddleware will have to spot the SuiteCRM account 
-IDs in the previous rule then update this account :
+This will:
+- Take the ``userid`` from the enrollment record
+- Look up the corresponding Salesforce Contact ID from rule `7d8765h3zzzzz` (the Users→Contacts rule)
+- Set ``errorifnotfound`` to 1, which will generate an error if the user hasn't been synchronized yet (ensuring data integrity)
 
-![Simulate fields mapping for Address to Accounts rule](images/advanced_usage/relationship_customers_addresses.png)
+This approach ensures that enrollments are only created when the related contacts exist in Salesforce. The same Contact may be referenced by multiple enrollments, creating a Many-to-One relationship.
 
+### Benefits of Lookup Formulas
 
-Here, we use the ``Account ID`` ie the ID of the target module in the current rule. This means that this rule will only update data.
-Now save the rule and run it. Don’t forget to put the reference date in the past if you want to retrieve already-existing data in Prestashop.
-Now open a transfer. You will see that Myddleware has found the right account to update :
+- **Flexibility**: Can be used in any formula field, combined with other functions
+- **Error Handling**: Built-in options to handle missing data
+- **Simplicity**: No need for separate relationship configuration tabs
+- **Maintainability**: Easy to understand and modify directly in field formulas
 
-![Rule Many to One step 3 - transfer of type update](images/advanced_usage/relationship_update_transfer.png)
+---
 
-## Bidirectional rules 
+### Legacy Relationships Feature (Deprecated)
 
-In our example, we have only shown you how to send data from Prestashop to SuiteCRM.
-But in reality, Myddleware allows you to send data in both directions, from Prestashop to SuiteCRM and from SuiteCRM to Prestashop (for example).
+!> **DEPRECATED**: The Relationships tab feature is deprecated and should not be used for new rules. Use the `lookup()` function in formulas instead (see above).
 
-One of the rules we have created is sending Prestashop Customers to SuiteCRM contacts. 
-In this case, only modifications in Prestashop will be sent to SuiteCRM. But if the contact is modified in SuiteCRM, 
-the modification won’t be sent to Prestashop.
+In earlier versions of Myddleware, relationships were configured through a dedicated "Relationships" tab during rule creation. This approach required selecting source fields, related rules, and target fields through a separate interface.
 
-So let’s create a new rule which will send SuiteCRM contacts updates to Prestashop. 
+While this feature still exists for backward compatibility with existing rules, it is no longer the recommended approach. The Relationships tab method is more complex, less flexible, and harder to maintain than using lookup formulas directly in field mappings.
+
+**If you have existing rules using the old Relationships tab**, they will continue to work, but consider migrating to lookup formulas when updating or refactoring your rules for better maintainability and clarity.
+
+## Bidirectional rules
+
+In our example, we have only shown you how to send data from Moodle to Salesforce.
+But in reality, Myddleware allows you to send data in both directions, from Moodle to Salesforce and from Salesforce to Moodle (for example).
+
+One of the rules we have created is sending Moodle Users to Salesforce Contacts.
+In this case, only modifications in Moodle will be sent to Salesforce. But if the contact is modified in Salesforce,
+the modification won't be sent to Moodle.
+
+So let's create a new rule which will send Salesforce contacts updates to Moodle.
 Select the same modules and connectors you used in your previous rule but in the opposite direction :
 
-- source: SuiteCRM > ``Contacts``
-- target: Prestashop > ``the e-shop s customers``
+- source: Salesforce > ``Contacts``
+- target: Moodle > ``Users``
 
-![Bidirectional rule - create rule Suite Contacts to Prestashop customers](images/advanced_usage/bidirectional_rule_create_suite_presta_contacts.png)
+![Bidirectional rule - create rule Salesforce Contacts to Moodle Users](images/advanced_usage/bidirectional_rule_create_suite_presta_contacts.png)
 
-Map some fields such as ``firstname``, ``lastname`` and ``email`` for instance. 
+Map some fields such as ``firstname``, ``lastname`` and ``email`` for instance.
 
-!> Make sure you don’t use a field that will be updated everytime like the modification date of the record, you could create an infinite loop otherwise ! 
+!> Make sure you don't use a field that will be updated everytime like the modification date of the record, you could create an infinite loop otherwise !
 
-Go to validation. A new field will be displayed ie “Bidirectional synchronization” in addition to the opposite rule. 
-Select the opposite rule and click on “Confirm” :
+Go to validation. A new field will be displayed ie "Bidirectional synchronization" in addition to the opposite rule.
+Select the opposite rule and click on "Confirm" :
 
 ![Bidirectional sync confirmation](images/advanced_usage/bidirectional_sync.png)
 
-The opposite rule is displayed on the rule’s detailed view :
+The opposite rule is displayed on the rule's detailed view :
 
-Activate both rules. Now, to test your bidirectional rule, modify a customer in Prestashop, go to the rules list view 
+Activate both rules. Now, to test your bidirectional rule, modify a user in Moodle, go to the rules list view
 and click on ``Execute all active rules`` :
 
 ![Bidirectional rule - rule description](images/advanced_usage/rule_description.png)
 
 ![Bidirectional rule - rule description](images/advanced_usage/list_rules.png)
 
-Now open the task, you will see the contact that has been sent to SuiteCRM.
+Now open the task, you will see the contact that has been sent to Salesforce.
 
 ![img.png](img.png)
 
-Notice that in SuiteCRM, the contact’s name was “Doe test” and but the name that was sent is “Doe”.  
-The name is now modified in SuiteCRM. Return to the rules list view and click again on “Execute all active rules”. 
-Another transfer is sent as a result of Myddleware reading in SuiteCRM and detecting the modification we’ve just made. 
+Notice that in Salesforce, the contact's name was "Doe test" and but the name that was sent is "Doe".
+The name is now modified in Salesforce. Return to the rules list view and click again on "Execute all active rules".
+Another transfer is sent as a result of Myddleware reading in Salesforce and detecting the modification we've just made.
 The transfer will automatically be cancelled to avoid an infinite loop :
 
-The reason for this being that the data is already updated in Prestashop (which is normal since Prestashop is the source 
-solution from which the data is being sent). So Myddleware detects that there are no modifications to send to Prestashop
+The reason for this being that the data is already updated in Moodle (which is normal since Moodle is the source
+solution from which the data is being sent). So Myddleware detects that there are no modifications to send to Moodle
 and thus cancels the transfer and stops what could result in an infinite loop.
 
-Now you have to do this test in the opposite direction. To do so, modify the contact in SuiteCRM and return to the rule 
-list view. Click once again on “Execute all active rules”. You only need to run the rules once, not twice as we did in 
-the previous case. In fact, it depends on which rule has been activated first when you click on “Execute all active rules”. 
-In one direction, you have to click on “run all rules” twice, in the other direction, once is enough.
+Now you have to do this test in the opposite direction. To do so, modify the contact in Salesforce and return to the rule
+list view. Click once again on "Execute all active rules". You only need to run the rules once, not twice as we did in
+the previous case. In fact, it depends on which rule has been activated first when you click on "Execute all active rules".
+In one direction, you have to click on "run all rules" twice, in the other direction, once is enough.
 
-At this point, your modification in SuiteCRM should be visible in Prestashop :
+At this point, your modification in Salesforce should be visible in Moodle :
 
-Once Myddleware detects the modification in Prestashop, it will try to send it to SuiteCRM. 
+Once Myddleware detects the modification in Moodle, it will try to send it to Salesforce.
 But once again, the transfer will be cancelled to avoid an infinite loop :
 
-If the transfer isn’t cancelled, your server will continue to update the same contacts every time. To avoid this, you will 
-have to detect why the transfer isn’t cancelled. It could be because you used the modification date, or because the data
-format is not the same in both applications. 
+If the transfer isn't cancelled, your server will continue to update the same contacts every time. To avoid this, you will
+have to detect why the transfer isn't cancelled. It could be because you used the modification date, or because the data
+format is not the same in both applications.
 To solve this problem, remove some fields in your rule or create a formula to have the same data format in both applications
 
 ## Workflows
