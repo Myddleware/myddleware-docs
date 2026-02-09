@@ -34,10 +34,8 @@ each target field and then a modal window will open allowing you to add your for
 
 ### Syntax
 
-To help, syntax highlighting (1) is available to you right on your text box.
-Furthermore, you will find below the list of source fields that you have chosen (2),
-the available functions and their categories (3) and one or two dropdown list(s) (4) containing the different values
-for the list type fields (as SalutationID example).
+To help, functions are able to perform various operations (1).
+You can see the result at the bottom of the formula pop up (2).
 
 ![Formula pop up](images/dev_guide/formula.PNG)
 
