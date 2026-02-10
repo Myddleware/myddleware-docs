@@ -7,9 +7,18 @@ This page aims to give you some guidance on how to obtain your credentials depen
 update their webservice, Myddleware code needs to be updated to reflect these changes too. If you detect any errors or missing information, please do not hesitate
 to let us know by raising an issue on our [GitHub Issues forum](https://github.com/Myddleware/myddleware/issues).
 
-## Acton
+## Act-On
 
-Documentation coming soon. Please [contact us](http://www.myddleware.com/contact-us) for more information about this connector.
+Myddleware can write data into Act-On modules.
+
+To connect Act-On to Myddleware, you need :
+
+- your User (login)
+- your Password
+- your Client ID
+- your Client Secret
+
+![Act-On connector credentials Myddleware form](images/credentials/act-on_connector_credentials.png)
 
 ## Airtable
 
