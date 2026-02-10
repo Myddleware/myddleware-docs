@@ -121,7 +121,19 @@ To create your hubspot connector, you will need your API key.
 
 ## Iomad
 
-Documentation coming soon. Please [contact us](http://www.myddleware.com/contact-us) for more information about this connector.
+Iomad is a Moodle-based LMS designed for corporate training. Myddleware can be used as both a source and a target for Iomad.
+
+To connect Iomad to Myddleware, you need :
+
+- your Iomad URL
+- your token
+
+You can also optionally provide :
+
+- User custom fields (shortname separated by comma)
+- Course custom fields (shortname separated by comma)
+
+![Iomad connector credentials Myddleware form](images/credentials/iomad_connector_credentials.png)
 
 ## Magento
 
