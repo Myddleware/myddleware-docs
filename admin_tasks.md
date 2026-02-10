@@ -214,8 +214,8 @@ yarn build
 
 | Action                | Definition                                                                                       | User | Admin | Super Admin |
 |-----------------------|--------------------------------------------------------------------------------------------------|------|-------|-------------|
-| Delete the logs       | Delete the logs of your current environment, to make debugging easier                           |      |       | ✔           |
-| Cancel a document     | In the document view section, a super admin can force a document to be canceled. The button is hidden if the user doesn't have the required rights. | | | ✔         |
+| Empty log file        | Clear the log file to free up space (see [My Information > Logs](#my-information))              |      |       | ✔           |
+| Force cancel a document | In the document view section, a super admin can force a document to be canceled regardless of its current status. The button is hidden if the user doesn't have the required rights. | | | ✔         |
 | Rule detail commands  | In the rule detail view section, a super admin can cancel all documents at once, delete all documents, or delete the rule itself. Note that all documents must be deleted before deleting the rule. The buttons are hidden if the user doesn't have the required rights. | | | ✔       |
 | Open a document       | Open a document for viewing                                                                      | ✔    | ✔     | ✔           |
 | Delete a document     | Delete the selected document                                                               | ✔    | ✔     | ✔           |
@@ -224,12 +224,6 @@ yarn build
 | Edit a rule         | Change important properties of a rule such as the fields or the relationships                                                                           | ✔    | ✔     | ✔           |
 | Run a rule         | Launch the rule for all the documents based on the reference                                                                           | ✔    | ✔     | ✔           |
 
-
-
-
-
-### Delete the logs
-![Delete the logs button](images/admin_tasks/delete_logs_button.png)
 
 ### Cancel a Document
 ![Cancel a document](images/admin_tasks/cancel_document.png)
