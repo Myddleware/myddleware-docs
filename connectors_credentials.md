@@ -570,7 +570,14 @@ your ``Access Key`` should be at the bottom.
 
 ## Yousign
 
-Documentation coming soon. Please [contact us](http://www.myddleware.com/contact-us) for more information about this connector.
+Yousign is a digital signature platform. Myddleware can read and write data in Yousign.
+
+To connect Yousign to Myddleware, you need :
+
+- your API key
+- indicate if you are connecting a sandbox or not (1 if yes, 0 if not)
+
+![Yousign connector credentials Myddleware form](images/credentials/yousign_connector_credentials.png)
 
 ## Zuora
 
