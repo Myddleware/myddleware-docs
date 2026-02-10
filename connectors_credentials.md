@@ -184,7 +184,33 @@ Finally, add this key in your Myddleware connector :
 
 ## Microsoft Dynamics
 
-Documentation coming soon. Please [contact us](http://www.myddleware.com/contact-us) for more information about this connector.
+Myddleware supports two distinct Microsoft Dynamics connectors : **Dynamics Business Central** and **Dynamics CRM**. Each requires its own set of credentials.
+
+### Dynamics Business Central
+
+Myddleware can be used as both a source and a target for Microsoft Dynamics Business Central.
+
+To connect Dynamics Business Central to Myddleware, you need :
+
+- your Tenant ID
+- your Client ID
+- your Client Secret
+- your Environment
+
+![Dynamics Business connector credentials Myddleware form](images/credentials/dynamics_business_connector_credentials.png)
+
+### Dynamics CRM
+
+Myddleware can be used as both a source and a target for Microsoft Dynamics CRM.
+
+To connect Dynamics CRM to Myddleware, you need :
+
+- your Tenant ID
+- your Client ID
+- your Client Secret
+- your Organization URL
+
+![Dynamics CRM connector credentials Myddleware form](images/credentials/dynamics_crm_connector_credentials.png)
 
 ## Microsoft SQL Server
 
