@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://myddleware.github.io/myddleware-docs/sitemap.xml
