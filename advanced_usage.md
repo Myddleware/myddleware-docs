@@ -382,23 +382,18 @@ This action allows you to unlock data sending. For example, during data migratio
 This action allows the system to modify the value of a specific field whenever the workflow is triggered. For example, you want to create and update a CRM (CRM_1) user from another CRM (CRM_2) contact, the user is created with a password. However, when updating the user, the password should not be updated. To handle this, the changeData action modifies the password field during an update, setting its value to "mdw_no_send_field", ensuring the password remains unchanged.
 To achieve this:
 1) First, select **changeData** from the ``Action`` dropdown.
-2) Select the rule with the fields you want to modify in the ``Rule`` field
-3) Click on the ``Add Field`` button to create a first field change
+2) Select the name of the target field you want to change (``Target Field``).
+3) Add the new value for the field (``New Value``).
+4) You can add additional field changes by clicking on the ``Add Field`` button.
 
-![Workflowaction - ChangeData - Part 1)](images/advanced_usage/workflow_action_changeData1.png)
-
-4) Select the name of the target field you want to change (``Target Field``).
-5) Add the new value for the field (``New Value``).
-6) You can add additional field changes by clicking on ``Add Field`` button.
-
-![Workflowaction - ChangeData - Part 2](images/advanced_usage/workflow_action_changeData2.png)
+![Workflowaction - changeData](images/advanced_usage/workflow_action_changeData1.png)
 
 ## Variables
 Sometimes, it's necessary to hard-code values like course IDs, names, etc., directly into rules. This feature allows those values to be grouped in a central location, where they can be assigned to variables and referenced by their variable names in the rules. This way, if any of these values (like IDs) need to be changed, you only need to update them in one place, simplifying management and reducing the risk of errors.
 
 ### Create a variable
 To create a variable,
-1) Navigate to the ``Rules`` tab and select ``List of variables``
+1) Navigate to the ``Rules`` tab and select ``Variables``
 2) Click on ``Create a new variable``
 3) A form will be displayed, fill ``variable name`` and its ``value``.
 
