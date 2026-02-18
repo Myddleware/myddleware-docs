@@ -344,14 +344,22 @@ A form will be displayed, and you will need to fill it in order to create your a
 
 ![Workflowaction - Creation view](images/advanced_usage/create_workflow_action_form.png)
 
-Additional fields will appear depending on the action you select. There are 5 main actions, which are detailed below.
+Additional fields will appear depending on the action you select. There are 6 main actions, which are detailed below.
 
 ##### updateStatus
 This action allows you to change the status of a document. For example, you want to cancel data sending when your workflow is triggered. To achieve this:
 1) First, select **updateStatus** from the ``Action`` dropdown.
-2) Then select a value from the ``Status`` dropdown. The available choices are: ``Cancel``, ``No_send``, ``Send``, ``Filter``, and ``New``.
+2) Then select a value from the ``Status`` dropdown. The available choices are: ``Ready_to_send``, ``Filter_OK``, ``Send``, ``Filter``, ``No_send``, ``Error_expected``, ``Cancel``, ``Create_KO``, ``Filter_KO``, ``Predecessor_KO``, ``Error_transformed``, ``Error_checking``, ``Error_sending``, ``Found``, and ``Not_found``.
+3) Fill in the ``Message`` field to add context about the status change.
 
 ![Workflowaction - UpdateStatus](images/advanced_usage/workflow_action_updateStatus.png)
+
+##### updateType
+This action allows you to change the type of a document. To achieve this:
+1) First, select **updateType** from the ``Action`` dropdown.
+2) Then select a value from the ``Document Type`` dropdown. The available choices are: ``C`` (Create), ``U`` (Update), ``D`` (Delete), and ``S`` (Search).
+
+![Workflowaction - updateType](images/advanced_usage/workflow_action_updateType.png)
 
 ##### generateDocument
 This action allows you to create a document (to send data) via another rule. For example, in the context of a university, when a school is sent through a rule called 'Send_School' (with the document status set to 'Sent'), you may want to send the contact associated with this school through the rule 'Send_contact'. To achieve this:
