@@ -357,9 +357,9 @@ This action allows you to change the status of a document. For example, you want
 This action allows you to create a document (to send data) via another rule. For example, in the context of a university, when a school is sent through a rule called 'Send_School' (with the document status set to 'Sent'), you may want to send the contact associated with this school through the rule 'Send_contact'. To achieve this:
 
 1) First, select **generateDocument** from the ``Action`` dropdown.
-2) Add the name of the field in the actual rule (``searchValue``). In this example, the contact ID in the 'Send_school' rule.
-3) Add the name of the field in the related rule (``searchField``). In this example, this would be a field containing the source ID of the school.
-4) Define the related rule that will generate the document (``Rule``). In this example, the 'Send_contact' rule.
+2) Define the rule that will generate the document in ``Generating Rule``. In this example, the 'Contacts - User' rule.
+3) Add the name of the matching field in the generating rule (``Matching Field from Generating Rule``). In this example, first_name.
+4) Add the name of the matching field in the current rule (``Matching Field from Current Rule``). In this example, firstname.
 5) Define whether to rerun the workflow or not (``Rerun``).
 
 ![Workflowaction - generateDocument](images/advanced_usage/workflow_action_generateDocument.png)
