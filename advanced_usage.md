@@ -120,6 +120,23 @@ Constant function that allows you to cancel the actual document
 
         "mdw_cancel_document"
 
+
+Formulas also allow you to add pre-formatted data inside your target application which does not necessarily come from your source app.
+For instance, when sending users from Moodle to SuiteCRM's ```Account``` module,
+you might want to tell Myddleware that all the accounts will have a ```Customer``` type by default in the ```account_type``` field in the target application (SuiteCRM).
+To do so, you will need to click on the target field's formula icon (```</>```), then use the **Function Wizard** dropdown to select a target value.
+In our case, we will select **Customer**.
+
+![Formula target dropdown list](images/basic_usage/rule/rule_formula_target_type.png)
+
+Then, you need to click on the **OK** button to push this value into the formula area. Don't forget to confirm your formula.
+
+![Formula - click on arrow to push value at the top](images/basic_usage/rule/formula_arrow_confirm.png)
+
+Now, you should be able to see the value you've selected in your formula directly inside the target field's box.
+
+![Fields mapping - "Customer" formula has been saved](images/basic_usage/rule/mapped_fields_formula.png)
+
 ## Linking Data Across Rules with Lookup Formulas
 
 When transferring data between applications, you often need to link related records across different rules. For example, when sending Moodle ``Users`` to Salesforce ``Contacts``, you may need to reference the Salesforce ``Account ID`` that was created by a previous rule that transferred Moodle ``Users`` to Salesforce ``Accounts``.
@@ -395,6 +412,39 @@ To achieve this:
 4) You can add additional field changes by clicking on the ``Add Field`` button.
 
 ![Workflowaction - changeData](images/advanced_usage/workflow_action_changeData1.png)
+
+## Rule Groups
+Rule groups allow you to organize and manage multiple rules as logical groups. This makes it easier to maintain and oversee related rules, especially when working with complex data migrations involving many rules.
+
+### Create a rule group
+To create a rule group,
+1) Navigate to the ``Rules`` tab and select ``Rule groups``
+2) Click on ``Create a rule group``
+
+![Rule Group - Create a rule group](images/advanced_usage/rule_group_create.png)
+
+A form will be displayed, and you will need to fill it in order to create your rule group. You will have to set:
+1) The ``Rule Group Name``
+2) The ``Description``
+
+Then click on ``Save``.
+
+![Rule Group - Creation form](images/advanced_usage/rulegroup_create_form.png)
+
+You are redirected to the rule group detail page. It displays the group's name, description, and the user who created it. A ``RULES`` section lists all rules currently in the group.
+
+![Rule Group - Detail view](images/advanced_usage/rule_group_detail_view.png)
+
+### Add a rule to a group
+To add a rule to a group, click on ``+ Add a rule`` on the rule group detail page. A dropdown will appear, allowing you to select an existing rule from the list.
+
+``Important``: Only rules that are active (automatic synchronization enabled) and not already part of another group will be available for selection in the dropdown.
+
+![Rule Group - Add a rule](images/advanced_usage/rule_group_add_rule_dropdown.png)
+
+Once rules have been added, they are displayed in the ``RULES`` section with their name, source module, target module, and active status.
+
+![Rule Group - Detail view with rules](images/advanced_usage/rule_group_detail_with_rules.png)
 
 ## Variables
 Sometimes, it's necessary to hard-code values like course IDs, names, etc., directly into rules. This feature allows those values to be grouped in a central location, where they can be assigned to variables and referenced by their variable names in the rules. This way, if any of these values (like IDs) need to be changed, you only need to update them in one place, simplifying management and reducing the risk of errors.

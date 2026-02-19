@@ -59,7 +59,7 @@ Before launching this upgrade procedure, create a backup of all your Myddleware 
 
 ##### Upgrade PHP
 
-!> For security & compatibility reasons, please make sure your PHP version is 7.4+. Myddleware 3 is compatible with PHP 7.4 & 8.0, but not 8.1. However, Myddleware 4 will be compatible with PHP 8.0 & 8.1.
+!> For security & compatibility reasons, please make sure your PHP version is 8.1+. Myddleware is compatible with PHP 8.1 and above.
 
 The following PHP extensions must be installed & enabled (they usually are by default):
 
@@ -146,8 +146,6 @@ Throughout this process, the core software of Myddleware will be upgraded from S
 git pull
 ```
 
-**TODO: this section is still under construction**
-
 If you get an error message below after trying to pull, you might have changed at least one file in the Myddleware standard code. 
 Please refer to ``Ensuring your custom code is upgrade-safe in Myddleware``  in the **Developer's guide** section of this doc. It will help you manage conflicts & transferring your custom code safely. 
 You can also delete these files, run ```git pull``` again and you will get the latest version of these files. However, if you do, you will probably lose your custom code & files.
@@ -176,9 +174,7 @@ APP_SECRET=<your secret from Myddleware2>
 
 #### (Optional) Import custom code
 
-**This section is still under construction**
-
-If you had custom code in Myddleware 2, coppy & paste your custom code.
+If you had custom code in Myddleware 2, copy & paste your custom code into the appropriate directories in Myddleware 3+. Make sure to adapt your code to the Symfony 4.4+ structure.
 
 #### Synchronise Myddleware database
 
@@ -221,7 +217,7 @@ yarn build
 | Delete a document     | Delete the selected document                                                               | ✔    | ✔     | ✔           |
 | Cancel a document     | Cancel a document and change its status to "Cancel"                                                          | ✔    | ✔     | ✔           |
 | View a rule           | Open a rule and see its information                                                                          | ✔    | ✔     | ✔           |
-| Edit a rule         | Change important properties of a rule such as the fields or the relationships                                                                           | ✔    | ✔     | ✔           |
+| Edit a rule         | Change important properties of a rule such as the fields, lookup formulas or filters                                                                           | ✔    | ✔     | ✔           |
 | Run a rule         | Launch the rule for all the documents based on the reference                                                                           | ✔    | ✔     | ✔           |
 
 
