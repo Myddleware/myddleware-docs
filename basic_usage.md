@@ -191,69 +191,69 @@ Checkout the [Job scheduler & cron tasks section](cron_jobs.md) for more details
 
 ### Fields mapping summary
 
-If you go to the **Fields mapping** tab, you can see a summary of the fields that are mapped for this rule.
+If you go to the **Field Mapping** tab, you can see a summary of the fields that are mapped for this rule. Each card displays the target field name (in bold), the source field(s) mapped to it (in blue), and whether a formula is applied. You can use the search bar to filter fields by name.
 
 ![Rule - fields mapping summary](images/basic_usage/rule/rule_mapping_summary.png)
 
 ### Rule Parameters
 
-From the rule's detail view, you can access the **parameters** tab. 
+From the rule's detail view, you can access the **Parameters** tab. This is where you configure the reference date, read limit, and data deletion settings.
 
 ![Rule parameters view](images/basic_usage/rule/rule_params_default.png)
 
-| Parameter      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | 
+| Parameter      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 |----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Reference date | The date Myddleware uses to start reading data from the source application. <br/>For example, if you set today’s date, only today’s created or modified data will be sent to your target application. <br/>(This also depends on the mode of your rule : the “Create and update data” rule mode concerns modified data while the “Create data only” rule mode concerns created data). If you want to migrate your data, all you need to do is put this date in the past. <br/>Then all created/modified data after this date will be read by Myddleware. | 
-| Data deletion  | You can ask the system to delete the transferred data of your rule after x days. To be able to do so, you must first set the ```clear data``` background job via the [job scheduler](cron_jobs.md).<br/> This job will delete all previously-transferred documents for this rule, except for their IDs, which Myddleware needs.                                                                                                                                                                                                                         |
-| Limit          | The maximum number of records read in one go by Myddleware (pagination system).                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Reference      | The date from which Myddleware starts reading data from the source application. <br/>For example, if you set today's date, only today's created or modified data will be sent to your target application. <br/>(This also depends on the mode of your rule: the "Create and update data" rule mode concerns modified data while the "Create data only" rule mode concerns created data). If you want to migrate your data, all you need to do is put this date in the past. <br/>Then all created/modified data after this date will be read by Myddleware. |
+| Limit          | The maximum number of records read in one go by Myddleware (read limit for each call). Default: 100.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Data deletion  | The period after which document data will be deleted in Myddleware. To be able to do so, you must first set the ```clear data``` background job via the [job scheduler](cron_jobs.md).<br/> This job will delete all previously-transferred documents for this rule, except for their IDs, which Myddleware needs.                                                                                                                                                                                                                                       |
 
-![Rule parameters view -  params panel - reference date - Datetime picker ](images/basic_usage/rule/rule_params_datetime_picker.png)
+You can click on the reference date field to open a datetime picker and select the exact date and time.
 
-The estimated documents panel allows you to simulate the number of records which will be read if you ran this rule.
-You can change the reference date if you need to then click on **Save**. 
+![Rule parameters view - reference date datetime picker](images/basic_usage/rule/rule_params_datetime_picker.png)
 
-!> For a rule to be able to run, you absolutely MUST click on this save button. Otherwise, Myddleware will execute the rule using the current timestamp, so no documents will be read.
+On the right side, the **Estimated documents** panel shows how many documents will be created on the next launch of this rule. Click **Simulate documents** to refresh this number. Note that this number can't be greater than the rule limit you have set up and the API limit of your source application.
 
+![Rule parameters view - estimated documents panel](images/basic_usage/rule/rule_params_simulation_number.png)
 
-![Rule parameters view - estimated documents simulation panel ](images/basic_usage/rule/rule_params_simulation_number.png)
+!> For a rule to be able to run, you absolutely MUST click on the **Save** button after setting your reference date. Otherwise, Myddleware will execute the rule using the current timestamp, so no documents will be read.
 
 ### Run a rule
 
-To manually run a rule, go to its details view and click  **Run the rule**.
+To manually run a rule, go to its details view and click **Run the rule**. The rule detail page also provides tabs for **Overview**, **Field Mapping**, **Filters**, and **Parameters**.
 
-![Rule details view - run the rule button ](images/basic_usage/rule/rule_execute.png)
-
-Once the rule has been launched, you may access the running task via the link displayed above. 
-You will be redirected to a summary of the task that Myddleware is running.
+![Rule details view - action buttons](images/basic_usage/rule/rule_execute.png)
 
 #### Task details
 
-![Currently running task summary](images/basic_usage/rule/task_running.png)
+Once the rule has been launched, you will be redirected to the task summary. This page shows the task's ID, status, start date, and parameters. You can click **REFRESH** to update the status or **STOP TASK** to cancel the execution. Below the task summary, you can see the list of logs with each document's ID, reference, creation date, type, and status message.
 
-You can also view the list of all the previously ran tasks.
+![Currently running task summary with logs](images/basic_usage/rule/task_running.png)
+
+You can also view the list of all previously ran tasks. Each task shows its parameter (e.g., the rule ID or "synchro ALL"), status, start/end dates, and a breakdown of opened, closed, cancelled, and error documents.
 
 ![Tasks list](images/basic_usage/rule/tasks_list.png)
 
 #### Documents
 
-Documents (data transfers) can be opened by clicking on **Display documents**.
+Documents (data transfers) can be viewed by clicking on **Display the documents**. The documents list shows the Doc ID, rule name, creation/modification dates, status, source ID, target ID, type, and reference date. You can filter and search documents using the controls at the top.
 
 ![Documents list](images/basic_usage/rule/rule_documents.png)
 
-You can also access the detail for each individual document by clicking on it.
+You can access the detail for each individual document by clicking on its Doc ID. The document detail page displays three columns:
+
+- **Source**: The data read from the source application (with the source field names and values)
+- **Target**: The data that was sent (or will be sent) to the target application
+- **History**: Previous values of the target fields, with modified values highlighted in yellow
+
+At the top, you can see the document's rule, status, type, attempt count, global status, reference date, and creation/modification dates. Action buttons allow you to **Reload**, **Cancel**, or **Run the same record** again.
 
 ![Single document details](images/basic_usage/rule/document_detail.png)
 
-You will then be able to see what Myddleware has read in the source application and what has been sent into the target application. 
-
-Note that you can see in the history column, on the right, that at the top there is a field value in yellow. This is to higlight that the field was modified, and you can see that the value was previously "Property actually various." and that it is now "Property actually truck".
-
 ##### Handling documents in error
 
-When a document (which is the record of the data transfer in myddleware) is in error, you can modify it, by resending it or cancelling it. 
-To be able to modify the document data, double-click on target data, change the data and click on the validation icon.
+When a document is in error, you can fix it directly from the document detail view. Click on a target field value to show the full value and have a pen icon appear, then click on the icon to edit it inline, then click the validation icon (green checkmark) to confirm or the cancel icon to discard your changes. Once the data is corrected, click **Reload** to resend the document or **Cancel** to cancel it.
 
-![Single documents view: double-click on target data transfer field to tweak it & then click on reload or cancel the transfer](images/basic_usage/document/document_tweak_data_transfer_error.png)
+![Document in error - edit target data inline and reload or cancel](images/basic_usage/document/document_tweak_data_transfer_error.png)
 
 ##### Mass actions
 
