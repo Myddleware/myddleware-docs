@@ -120,6 +120,7 @@ Constant function that allows you to cancel the actual document
 
         "mdw_cancel_document"
 
+### Pre-formatting data using the target application
 
 Formulas also allow you to add pre-formatted data inside your target application which does not necessarily come from your source app.
 For instance, when sending users from Moodle to SuiteCRM's ```Account``` module,
