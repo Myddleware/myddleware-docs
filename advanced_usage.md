@@ -227,7 +227,7 @@ This approach ensures that enrollments are only created when the related contact
 
 ### Legacy Relationships Feature (Deprecated)
 
-!> **DEPRECATED**: The Relationships tab feature is deprecated and should not be used for new rules. Use the `lookup()` function in formulas instead (see above).
+!> **DEPRECATED**: The Relationships tab feature is deprecated and should not be used for new rules. From version 4.3.0, the relationship menu is not available anymore. Besides, you cannot use the upgrade command if there is at least one relationship present in the database. Use the `lookup()` function in formulas instead (see above).
 
 In earlier versions of Myddleware, relationships were configured through a dedicated "Relationships" tab during rule creation. This approach required selecting source fields, related rules, and target fields through a separate interface.
 
