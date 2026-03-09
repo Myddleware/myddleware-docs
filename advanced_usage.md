@@ -130,7 +130,7 @@ In our case, we will select **Customer**.
 
 ![Formula target dropdown list](images/basic_usage/rule/rule_formula_target_type.png)
 
-Then, you need to click on the **OK** button to push this value into the formula area. Don't forget to confirm your formula.
+Then, you need to click on the **↑** button to push this value into the formula area. Don't forget to confirm your formula.
 
 ![Formula - click on arrow to push value at the top](images/basic_usage/rule/formula_arrow_confirm.png)
 
