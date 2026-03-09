@@ -1,6 +1,6 @@
 # Currently-supported Connectors
 
-- Acton
+- Act-On
 - Airtable
 - Brevo
 - ERPNext
