@@ -181,6 +181,16 @@ note that you can set the password in the docker.env.example, instead of secret:
 mysql_root_password=MyCustomPassword
 mysql_password=MyCustomPassword
 
+##### Updating the Myddleware container
+
+To update the Myddleware container after a source code change:
+
+```bash
+docker compose up -d --build myddleware
+```
+
+The `myddleware` keyword at the end specifies the service name as defined in the docker compose file. This ensures only the Myddleware container is rebuilt and restarted, without affecting other services such as the database.
+
 ##### Building with Docker (developer's mode)
 
 ###### Build the container
