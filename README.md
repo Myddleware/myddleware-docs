@@ -110,7 +110,7 @@ To set your password you have two options : either in .env or when you run docke
 
 with the arguments in the command:
 
-mysql_password=myStrongPass mysql_root_password=myRootPass docker-compose up -d
+mysql_password=myStrongPass mysql_root_password=myRootPass docker compose up -d
 
 or in .env:
 
@@ -155,14 +155,14 @@ make build
 make run
 ```
 
-##### Building with docker-compose (developer's mode)
+##### Building with docker compose (developer's mode)
 
 ###### Build the container locally
 
 Run the following commands in your myddleware directory :
 
-```docker-compose
-docker-compose up --build
+```docker compose
+docker compose up --build
 
 ```
 
@@ -171,7 +171,7 @@ Once your container is built, you can now go to <http://localhost:30080>, where 
 To connect to the MySQL database, including in the myddleware installation, use the following credentials :
 
 - **host** : mysql
-- **username** : root
+- **username** : myddleware
 - **password** : secret
 - **database** : myddleware
 - **port** : 3306
