@@ -1,4 +1,4 @@
-# Myddleware <small>3.3.1</small>
+# Myddleware <small>3.4.1</small>
 
 > Connect your applications, exploit your data better.
 

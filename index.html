@@ -48,7 +48,23 @@
     }
   </script>
   <style>
-    .sidebar ul li.active>a, .app-nav a.active, .app-nav a:hover{
+    section.cover {
+      background: linear-gradient(135deg, #2c2c54, #03c4eb) !important;
+      color: #fff !important;
+    }
+    section.cover h1, section.cover h2, section.cover h3,
+    section.cover p, section.cover li, section.cover small,
+    section.cover blockquote {
+      color: #fff !important;
+    }
+    section.cover .cover-main>p:last-child a:first-child {
+      color: #fff !important;
+      border-color: #fff !important;
+    }
+    section.cover h1 a, section.cover h1 a span {
+      color: #fff !important;
+    }
+    .sidebar ul li.active>a{
       color: #26B7DF !important;
     }
     .markdown-section blockquote{
@@ -66,11 +82,18 @@
     .markdown-section a{
       color: #26B7DF !important;
     }
+    .app-nav a, .app-nav a:hover, .app-nav a.active, .app-nav a strong,
+    .app-nav li strong, .app-nav li > strong {
+      color: #fff !important;
+    }
     .app-nav a.active {
-      border-bottom: 2px solid #26B7DF !important;
+      border-bottom: 2px solid #fff !important;
+    }
+    section.cover h1 {
+      font-weight: 700 !important;
     }
     section.cover .cover-main>p:last-child a:first-child{
-      color: #26B7DF !important;;
+      color: #fff !important;;
     }
   </style>
   <!-- Docsify v4 -->
