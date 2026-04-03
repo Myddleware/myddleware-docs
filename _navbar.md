@@ -5,5 +5,5 @@
 * [Myddleware API](api.md)
 * [Developer's guide](dev_guide.md)
 * **Demo**
-  * [Myddleware Demo](http://www.crmconsult.com/livedemo/myddleware/web/)
-  * [Demo instructions](http://www.myddleware.com/solution/demo)
+  * [Myddleware Demo](https://demo.myd.myddleware.cloud/public/)
+  * [Demo instructions](https://www.myddleware.com/#wannatry)
