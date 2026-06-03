@@ -87,7 +87,7 @@ yarn build
 
 #### **Donwload zip archive**
 
-Download the Myddleware zip file [here](https://www.myddleware.com/wp-content/uploads/myddleware/myddleware-4.3.0.zip)
+Download the Myddleware zip file [here](https://www.myddleware.com/wp-content/uploads/myddleware/myddleware-4.3.1.zip)
 
 #### Installing from the archive
 
